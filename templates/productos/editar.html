@@ -1,0 +1,52 @@
+{% extends 'productos/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4">Editar producto</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                {% if field.name != 'categoria' and field.name != 'marca' %}
+                <div class="mb-3">
+                    <label class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="text-danger small">{{ field.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endfor %}
+            <div class="mb-3">
+                <label class="form-label">Categoría</label>
+                <select name="categoria" class="form-select">
+                    <option value="">Seleccione una categoría</option>
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria.id }}" {% if form.categoria.value == categoria.id %}selected{% endif %}>{{ categoria.nombre }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.categoria.errors %}
+                    <div class="text-danger small">{{ form.categoria.errors|striptags }}</div>
+                {% endif %}
+                <small class="text-muted"><a href="{% url 'crear_categoria' %}">Agregar categoría</a></small>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Marca</label>
+                <select name="marca" class="form-select">
+                    <option value="">Seleccione una marca</option>
+                    {% for marca in marcas %}
+                        <option value="{{ marca.id }}" {% if form.marca.value == marca.id %}selected{% endif %}>{{ marca.nombre }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.marca.errors %}
+                    <div class="text-danger small">{{ form.marca.errors|striptags }}</div>
+                {% endif %}
+                <small class="text-muted"><a href="{% url 'crear_marca' %}">Agregar marca</a></small>
+            </div>
+            <button type="submit" class="btn btn-success">Actualizar</button>
+            <a href="{% url 'listar_productos' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

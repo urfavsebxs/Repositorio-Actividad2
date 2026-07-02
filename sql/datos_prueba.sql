@@ -1,4 +1,4 @@
-USE tallerexpress;
+USE eliteshoponline;
 
 INSERT INTO productos_categoria (nombre, descripcion, activo) VALUES
 ('Herramientas', 'Herramientas para hogar y taller', 1),

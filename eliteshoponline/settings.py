@@ -27,7 +27,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'tallerexpress.urls'
+ROOT_URLCONF = 'eliteshoponline.urls'
 
 TEMPLATES = [
     {
@@ -44,7 +44,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'tallerexpress.wsgi.application'
+WSGI_APPLICATION = 'eliteshoponline.wsgi.application'
 
 try:
     import MySQLdb  # noqa: F401
@@ -63,7 +63,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'tallerexpress',
+            'NAME': 'eliteshoponline',
             'USER': 'root',
             'PASSWORD': '',
             'HOST': '127.0.0.1',
